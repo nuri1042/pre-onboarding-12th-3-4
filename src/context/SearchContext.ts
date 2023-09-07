@@ -14,4 +14,4 @@ export interface SearchContextType {
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export default SearchContext;
-export const useShearch = () => useContext(SearchContext) as SearchContextType;
+export const useSearch = () => useContext(SearchContext) as SearchContextType;

@@ -1,7 +1,8 @@
 // SearchProvider.tsx
 import React, { KeyboardEvent, useCallback, useState } from 'react';
 import { Sick } from '../types';
-import SearchContext, { SearchContextType } from './ShearchContext';
+import SearchContext, { SearchContextType } from './SearchContext';
+import { search } from '../api/search';
 
 interface SearchProviderProps {
   children: React.ReactNode;
@@ -14,8 +15,23 @@ function SearchProvider({ children }: SearchProviderProps) {
   const [suggestions, setSuggestions] = useState<Sick[]>([]);
 
   const changeFocus = (value: boolean) => setIsFocus(value);
-  const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+
+  const getSuggestion = async (keyword: string) => {
+    const res = await search(keyword);
+    setSuggestions(res);
+  };
+
+  const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const keyword = event.target.value;
+    setSearchText(keyword);
+    if (!keyword) {
+      setSuggestions([]);
+      return;
+    }
+    getSuggestion(keyword);
+  };
   const handleSuggestionClick = (suggestion: string) => {};
+
   const keyboardEvent = useCallback((e: KeyboardEvent<HTMLInputElement>) => {}, []);
 
   const contextValue: SearchContextType = {
