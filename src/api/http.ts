@@ -1,42 +1,39 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Cache, MemoryCache } from './cache';
+import CacheApiServer from '../utils/cacheStorage';
 
 const BASE_URL =
   process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 class Http {
   axiosInstance: AxiosInstance;
+
   constructor(
     baseURL: string,
-    private cache: Cache = new MemoryCache(),
+    private cache = new CacheApiServer('sick'),
   ) {
     this.axiosInstance = axios.create({ baseURL });
   }
 
-  async request<T>(config: RequestConfig): Promise<T> {
+  async request(config: RequestConfig) {
     const cacheKey = this.generateCacheKey(config);
 
-    if (config.method === 'GET' && this.cache.has(cacheKey)) {
-      return this.cache.get(cacheKey)!;
-    }
-
     try {
+      const cachedResponse = await this.cache.get(cacheKey);
+      if (config.method === 'GET' && cachedResponse) return cachedResponse.json();
+
       const axiosConfig: AxiosRequestConfig = {
         method: config.method,
         url: config.url,
         params: config.query,
         data: config.body,
       };
-      console.info('calling api');
-      const res: AxiosResponse<T> = await this.axiosInstance(axiosConfig);
-
+      const res: AxiosResponse = await this.axiosInstance(axiosConfig);
       if (config.method === 'GET') {
         this.cache.set(cacheKey, res.data);
       }
-
       return res.data;
     } catch (err) {
-      console.error(err);
+      console.log(err);
       throw err;
     }
   }
