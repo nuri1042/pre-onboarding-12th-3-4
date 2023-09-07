@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useSearch } from '../context/SearchContext';
 
 export default function SearchForm() {
-  const { searchText, inputChange } = useSearch();
+  const { searchText, inputChange, keyboardEvent } = useSearch();
 
   const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ export default function SearchForm() {
   return (
     <StyledForm onSubmit={searchSubmit}>
       <label>
-        <input type='text' name='sick' value={searchText} onChange={inputChange} autoFocus />
+        <input type='text' name='sick' value={searchText} onChange={inputChange} onKeyDown={keyboardEvent} autoFocus />
         <FaSearch size='24' color='white' />
       </label>
       <button type='submit'>검색</button>
