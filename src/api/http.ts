@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Cache, MemoryCache } from './cache';
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL =
+  process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 class Http {
   axiosInstance: AxiosInstance;
@@ -45,7 +46,7 @@ class Http {
   }
 }
 
-const http = new Http(BASE_URL);
+const http = new Http(BASE_URL || '');
 
 export default http;
 
