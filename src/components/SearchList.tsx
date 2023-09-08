@@ -7,6 +7,7 @@ const SEARCH_LIMIT = 10;
 
 export default function SelectList() {
   const { suggestions, searchText } = useSearch();
+
   return (
     <StyledList>
       <li>

@@ -1,7 +1,7 @@
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';
 import { styled } from 'styled-components';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useSearch } from '../context/SearchContext';
 import useClickOutside from '../hooks/useClickOutside';
 

@@ -21,6 +21,10 @@ function SearchProvider({ children }: SearchProviderProps) {
     setSuggestions(res);
   };
 
+  const changeSearchText = (text: string) => {
+    setSearchText(text);
+  };
+
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value;
     setSearchText(keyword);
@@ -42,6 +46,7 @@ function SearchProvider({ children }: SearchProviderProps) {
     searchText,
     suggestions,
     inputChange,
+    changeSearchText,
     handleSuggestionClick,
     keyboardEvent,
   };

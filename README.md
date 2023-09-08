@@ -1,7 +1,7 @@
 # 원티드 프리온보딩 3주차 과제
 
 - 해당 repository는 원티드 프리온보딩 프론트엔트 인턴쉽 12차 3주차 과제을 다뤘습니다.
-- <a href="https://clinicaltrialskorea.com/">해당 링크</a>의 검색 영역을 클론하였으며 국내 임상시험 검색할때 추천 검색어를 보여주는 프로젝트입니다. 
+- <a href="https://clinicaltrialskorea.com/">해당 링크</a>의 검색 영역을 클론하였으며 국내 임상시험 검색할때 추천 검색어를 보여주는 프로젝트입니다.
 - 팀원들과 상의해 각 기능의 Best Practice를 도출하고 합친 결과물입니다.
 
 ## 팀 구성원 및 역할
@@ -12,11 +12,9 @@
 | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
 | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/33623123?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/19181088?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/73675549?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/22779951?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/107099724?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/52943412?v=4" > |
 |                      [llbllhllk](https://github.com/llbllhllk)                      |                       [nuri1042](https://github.com/nuri1042)                       |                       [devshinn](https://github.com/devshinn)                       |                   [mrsimplelife](https://github.com/mrsimplelife)                    |                       [hyeri-woo](https://github.com/hyeri-woo)                       |                       [dmsgkr02](https://github.com/dmsgkr02)                        |
-|                                   최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기                                    |                                   로컬 캐싱 구현                                   |                         Context API 설정, API 호출줄이기                     |                                   API 설정                                    |                         초기 설정, 검색어 추천 기능             |     키보드 접근성                    |
+|              최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기              |                                   로컬 캐싱 구현                                    |                          Context API 설정, API 호출줄이기                           |                                       API 설정                                       |                              초기 설정, 검색어 추천 기능                              |                                    키보드 접근성                                     |
 
 ## 배포 링크
-
-
 
 ## 프로젝트 실행 방법
 
@@ -39,6 +37,7 @@ npm install
 ```
 
 4. json-server 실행
+
 ```
 npm run server
 ```
@@ -52,6 +51,7 @@ npm start
 ## 기술 및 개발 환경
 
 ### 사용 라이브러리
+
 - 언어: TypeScript
 - 스타일 관리: styled-components, react-icons
 - 라우팅 관련 라이브버리: react-router-dom
@@ -175,30 +175,32 @@ npm start
 >   - 검색어가 없을 시 “검색어 없음” 표출
 
 #### api 호출
+
 - axios class를 사용해 generic하게 정의
 - 해당 class의 매개변수로 storage를 받아 api 호출을 할때 해당 storage에 저장
 - ✅ 이유
 
-#### 검색어 정보 관리 
+#### 검색어 정보 관리
+
 - Context API로 searchText와 추천 검색어 리스트 저장
-- ✅ 이유: 
+- ✅ 이유:
 
 #### 화면에 뿌리기
-- Context API를 통해 SearchList에서 추천 검색어 리스트를 저장하고 map으로 순회하며 SearchItem을 뿌리기 
+
+- Context API를 통해 SearchList에서 추천 검색어 리스트를 저장하고 map으로 순회하며 SearchItem을 뿌리기
 - ✅ 이유
 
 #### 최근 검색어
+
 - localStroage로 저장
 - ✅ 이유
-
 
 ### Assignment 2: 로컬 캐싱 구현
 
 > - API 호출별로 로컬 캐싱 구현
->    - 캐싱 기능을 제공하는 라이브러리 사용 금지(React-Query 등)
->    - 캐싱을 어떻게 기술했는지에 대한 내용 README에 기술
->    - expire time을 구현할 경우 가산점 (extra)
-
+>   - 캐싱 기능을 제공하는 라이브러리 사용 금지(React-Query 등)
+>   - 캐싱을 어떻게 기술했는지에 대한 내용 README에 기술
+>   - expire time을 구현할 경우 가산점 (extra)
 
 - cacheStorage로 저장
 - ✅ 이유:
@@ -206,8 +208,8 @@ npm start
 ### Assignment 3: API 호출 횟수 줄이기
 
 > - 입력마다 API 호출하지 않도록 API 호출 횟수를 줄이는 전략 수립 및 실행
->    - README에 전략에 대한 설명 기술
->    - API를 호출할 때 마다 `console.info("calling api")` 출력을 통해 콘솔창에서 API 호출 횟수 확인이 가능하도록 설정
+>   - README에 전략에 대한 설명 기술
+>   - API를 호출할 때 마다 `console.info("calling api")` 출력을 통해 콘솔창에서 API 호출 횟수 확인이 가능하도록 설정
 
 - 한글의 경우 단모음 단자음이 아닐때 검색되게 구현
 - 모든 언어 통틀어 setTimeout delay 시간을 짧게 설정해 useDebounce 훅에서 처리
@@ -215,22 +217,26 @@ npm start
 - ✅ 이유: 영어나 다른 언어의 경우 단모음 단자음 처리가 애매하기 때문에 debounce 처리 (대신 delay시간을 짧게 설정하여 검색어가 금방 나오도록 설정)
 
 ### Assignment 4: 키보드 접근성
+
 > - 키보드만으로 추천 검색어들로 이동 가능하도록 구현
->    - 사용법 README에 기술
+>   - 사용법 README에 기술
 
 #### 키보드/focus의 이동
+
 - Context API로 관리
-- ✅ 이유: 
+- ✅ 이유:
+
 #### input에서의 이동
+
 - input에서 화살표 아래키 눌렀을 시 추천 검색어 첫번째로 포커스
 - input에서 엔터키 눌렀을시 (submit)
-    - alert(해당 추천 검색어) ⇒ 확인용
+  - alert(해당 추천 검색어) ⇒ 확인용
 - ✅ 이유: input에서의 화살표 이동하면 사용자 입장에서 편함
 
 #### 추천 검색어 리스트에서의 이동
-- 추천 검색어 리스트 안에서 계속 순회하기 
-    - 가장 위에서 화살표 위키 눌렀을 시 가장 아래 검색어로 이동
-- 추천 검색어에서 엔터키 눌렀을시
-    - 해당 추천 검색어를 input value값으로 만들고 list 닫기 ⇒ submit
-- ✅ 이유: 
 
+- 추천 검색어 리스트 안에서 계속 순회하기
+  - 가장 위에서 화살표 위키 눌렀을 시 가장 아래 검색어로 이동
+- 추천 검색어에서 엔터키 눌렀을시
+  - 해당 추천 검색어를 input value값으로 만들고 list 닫기 ⇒ submit
+- ✅ 이유:

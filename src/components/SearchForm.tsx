@@ -2,16 +2,20 @@ import React, { forwardRef } from 'react';
 import { styled } from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import { useSearch } from '../context/SearchContext';
+import LocalStorage, { RECENT_SEARCH } from '../storage/localStorage';
 
 interface Props {
   ref?: React.MutableRefObject<HTMLInputElement | null>;
 }
 
 const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
-  const { searchText, inputChange, changeFocus } = useSearch();
+  const { searchText, changeSearchText, inputChange, changeFocus } = useSearch();
 
   const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const localStorage = new LocalStorage();
+    localStorage.save(RECENT_SEARCH, searchText);
+    changeSearchText('');
   };
 
   return (
