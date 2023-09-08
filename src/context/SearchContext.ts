@@ -10,6 +10,7 @@ export interface SearchContextType {
   suggestions: Sick[];
   inputChange: (event: ChangeEvent<HTMLInputElement>) => void;
   handleSuggestionClick: (suggestion: string) => void;
+  selectionIndex: number;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);

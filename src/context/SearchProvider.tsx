@@ -25,7 +25,6 @@ function SearchProvider({ children }: SearchProviderProps) {
 
   const getSuggestion = async (keyword: string) => {
     const res = await search(keyword);
-    console.info(res);
     setSuggestions(res.slice(0, SEARCH_LIMIT));
   };
 
@@ -78,7 +77,7 @@ function SearchProvider({ children }: SearchProviderProps) {
         }
       }
     },
-    [searchText, suggestions],
+    [suggestions],
   );
 
   const contextValue: SearchContextType = {
@@ -90,6 +89,7 @@ function SearchProvider({ children }: SearchProviderProps) {
     changeSearchText,
     handleSuggestionClick,
     keyboardEvent,
+    selectionIndex,
   };
 
   return <SearchContext.Provider value={contextValue}>{children}</SearchContext.Provider>;

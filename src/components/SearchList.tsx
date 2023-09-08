@@ -5,7 +5,7 @@ import RecentSearchList from './RecentSearchList';
 import SelectItem from './SearchItem';
 
 export default function SelectList() {
-  const { suggestions, searchText } = useSearch();
+  const { suggestions, searchText, selectionIndex } = useSearch();
 
   return (
     <StyledList>
@@ -19,9 +19,9 @@ export default function SelectList() {
 
       <ul>
         {!isEmpty(searchText) &&
-          suggestions.map((sick) => {
+          suggestions.map((sick, index) => {
             return (
-              <li key={sick.sickCd} className={searchText === sick.sickNm ? 'selected' : ''}>
+              <li key={sick.sickCd} className={selectionIndex === index ? 'selected' : ''}>
                 <SelectItem>{sick.sickNm}</SelectItem>
               </li>
             );
