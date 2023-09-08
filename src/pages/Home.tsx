@@ -1,26 +1,20 @@
-import SearchForm from '../components/SearchForm';
-import SearchList from '../components/SearchList';
 import { styled } from 'styled-components';
-import { useRef } from 'react';
-import { useSearch } from '../context/SearchContext';
-import useClickOutside from '../hooks/useClickOutside';
-import RecentSearchList from '../components/RecentSearchList';
+import Search from '../components/Search';
+import Header from '../components/common/Header';
 
 export default function Home() {
-  const { isFocus, changeFocus } = useSearch();
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
-  useClickOutside(searchInputRef, () => changeFocus(false));
-
   return (
     <StyledLayout>
-      <h1>
-        국내 모든 임상시험 검색하고 <br /> 온라인으로 참여하기{' '}
-      </h1>
-      <SearchForm ref={searchInputRef} />
-      {isFocus && <RecentSearchList />}
-      {isFocus && <SearchList />}
+      <Header />
+      <Search />
+      <div>
+        <h3>검색결과 ...</h3>
+      </div>
     </StyledLayout>
   );
 }
 
-const StyledLayout = styled.div``;
+const StyledLayout = styled.div`
+  width: 100%;
+  height: 100%;
+`;

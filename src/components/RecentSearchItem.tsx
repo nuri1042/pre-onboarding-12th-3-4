@@ -1,6 +1,6 @@
+import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { styled } from 'styled-components';
-import React from 'react';
 
 type RecentSearchItemProps = {
   children: React.ReactNode;
@@ -9,10 +9,21 @@ type RecentSearchItemProps = {
 export default function RecentSearchItem({ children }: RecentSearchItemProps) {
   return (
     <StyledItem type='button'>
-      <FaSearch size='12' color='white' />
+      <FaSearch />
       <span>{children}</span>
     </StyledItem>
   );
 }
 
-const StyledItem = styled.button``;
+const StyledItem = styled.button`
+  color: var(--primary);
+  font-size: 12px;
+  svg {
+    color: var(--primary);
+  }
+  border: solid 1px var(--primary);
+  padding: 1px 5px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+`;
