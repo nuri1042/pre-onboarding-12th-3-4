@@ -5,15 +5,17 @@
 - 팀원들과 상의해 각 기능의 Best Practice를 도출하고 합친 결과물입니다.
 
 ## 팀 구성원 및 역할
+
 - 원티드 프리온보딩 프론트엔트 인턴쉽 12차 4팀입니다.
 
-|                     **강병헌**                                      |                                     **김누리**                                      |                                     **김신혁**                                      |                                      **박윤철**                                      |                                   **우혜리 (팀장)**                                   |                                      **이은학**                                      |
+|                                     **강병헌**                                      |                                     **김누리**                                      |                                     **김신혁**                                      |                                      **박윤철**                                      |                                   **우혜리 (팀장)**                                   |                                      **이은학**                                      |
 | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
 | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/33623123?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/19181088?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/73675549?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/22779951?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/107099724?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/52943412?v=4" > |
 |                      [llbllhllk](https://github.com/llbllhllk)                      |                       [nuri1042](https://github.com/nuri1042)                       |                       [devshinn](https://github.com/devshinn)                       |                   [mrsimplelife](https://github.com/mrsimplelife)                    |                       [hyeri-woo](https://github.com/hyeri-woo)                       |                       [dmsgkr02](https://github.com/dmsgkr02)                        |
 |              최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기              |                                   로컬 캐싱 구현                                    |                          Context API 설정, API 호출줄이기                           |                                       API 설정                                       |                              초기 설정, 검색어 추천 기능                              |                                    키보드 접근성                                     |
 
 ## 배포 링크
+
 <a href="https://pre-onboarding-12th-3-4.vercel.app/">임상시험 검색 프로젝트 배포 링크</a>
 
 ## 프로젝트 실행 방법
@@ -51,6 +53,7 @@ npm start
 ## 기술 및 개발 환경
 
 ### 사용 라이브러리
+
 - 언어: TypeScript
 - 스타일 관리: styled-components, react-icons
 - 라우팅 관련 라이브버리: react-router-dom
@@ -113,6 +116,7 @@ npm start
 ```
 
 ### Prettier 설정
+
 ```js
 {
   "bracketSpacing": true,
@@ -131,6 +135,7 @@ npm start
 ```
 
 ## 폴더 구조
+
 ```
 📦 src
 ├── 📂 api
@@ -231,7 +236,6 @@ npm start
 
 > - 키보드만으로 추천 검색어들로 이동 가능하도록 구현
 >   - 사용법 README에 기술
-
 
 #### 추천 검색어 리스트에서의 이동
 
