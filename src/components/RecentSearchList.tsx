@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import LocalStorage, { RECENT_SEARCH } from '../storage/localStorage';
+import RecentSearchItem from './RecentSearchItem';
 
 export default function RecentSearchList() {
   const localStorage = new LocalStorage();
@@ -11,7 +12,11 @@ export default function RecentSearchList() {
       {!Array.isArray(recentData) ? (
         <li>최근 검색어가 없습니다.</li>
       ) : (
-        recentData.map((data: string, idx: number) => <li key={idx}>{data}</li>)
+        recentData.map((data: string, idx: number) => (
+          <li key={idx}>
+            <RecentSearchItem>{data}</RecentSearchItem>
+          </li>
+        ))
       )}
     </StyledList>
   );
