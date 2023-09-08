@@ -29,6 +29,10 @@ function SearchProvider({ children }: SearchProviderProps) {
     setSuggestions(res.slice(0, SEARCH_LIMIT));
   };
 
+  const changeSearchText = (text: string) => {
+    setSearchText(text);
+  };
+
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value;
     setSearchText(keyword);
@@ -40,7 +44,9 @@ function SearchProvider({ children }: SearchProviderProps) {
     }
     getSuggestion(keyword);
   };
-  const handleSuggestionClick = (suggestion: string) => {};
+  const handleSuggestionClick = (suggestion: string) => {
+    setIsFocus(false);
+  };
 
   const keyboardEvent = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
@@ -81,6 +87,7 @@ function SearchProvider({ children }: SearchProviderProps) {
     searchText,
     suggestions,
     inputChange,
+    changeSearchText,
     handleSuggestionClick,
     keyboardEvent,
   };

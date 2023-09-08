@@ -5,6 +5,7 @@ export interface SearchContextType {
   keyboardEvent: (e: any) => void;
   isFocus: boolean;
   changeFocus: (value: boolean) => void;
+  changeSearchText: (text: string) => void;
   searchText: string;
   suggestions: Sick[];
   inputChange: (event: ChangeEvent<HTMLInputElement>) => void;

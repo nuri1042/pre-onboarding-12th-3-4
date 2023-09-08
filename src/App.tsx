@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
+import SearchProvider from './context/SearchProvider';
 
 function App() {
   return (
     <>
-      <Outlet />
+      <SearchProvider>
+        <Outlet />
+      </SearchProvider>
     </>
   );
 }

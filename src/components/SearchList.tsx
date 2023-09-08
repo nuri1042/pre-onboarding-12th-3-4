@@ -5,6 +5,7 @@ import { isEmpty } from '../lib/utils';
 
 export default function SelectList() {
   const { suggestions, searchText } = useSearch();
+
   return (
     <StyledList>
       <li>
