@@ -9,7 +9,7 @@ interface Props {
 }
 
 const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
-  const { searchText, changeSearchText, inputChange, changeFocus } = useSearch();
+  const { searchText, changeSearchText, inputChange, changeFocus, keyboardEvent } = useSearch();
 
   const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +28,7 @@ const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
         onChange={inputChange}
         autoFocus
         onFocus={() => changeFocus(true)}
+        onKeyDown={keyboardEvent}
         ref={ref}
       />
       <button type='submit' className='submit-btn'>
