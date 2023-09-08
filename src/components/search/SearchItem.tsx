@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { styled } from 'styled-components';
-import { useSearch } from '../context/SearchContext';
+import { useSearch } from '../../context/SearchContext';
+import { Sick } from '../../types';
 
 type SelectItemProps = {
-  children: React.ReactNode;
+  sick: Sick;
 };
 
-export default function SelectItem({ children }: SelectItemProps) {
+export default function SelectItem({ sick }: SelectItemProps) {
   const { handleSuggestionClick } = useSearch();
 
   return (
-    <StyledItem type='button' onClick={() => handleSuggestionClick}>
+    <StyledItem type='button' onClick={() => handleSuggestionClick(sick.sickNm)}>
       <FaSearch size='12' color='gray' />
-      <span>{children}</span>
+      <p>{sick.sickNm}</p>
     </StyledItem>
   );
 }
@@ -22,4 +23,5 @@ const StyledItem = styled.button`
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
 `;

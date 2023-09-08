@@ -1,22 +1,23 @@
 import React, { forwardRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { styled } from 'styled-components';
-import { useSearch } from '../context/SearchContext';
-import LocalStorage, { RECENT_SEARCH } from '../storage/localStorage';
+import { useSearch } from '../../context/SearchContext';
+import LocalStorage, { RECENT_SEARCH } from '../../storage/localStorage';
+import { isEmpty } from '../../lib/utils';
 
 interface Props {
   ref?: React.MutableRefObject<HTMLInputElement | null>;
 }
 
 const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
-  const { searchText, changeSearchText, inputChange, changeFocus, keyboardEvent } = useSearch();
+  const { searchText, inputChange, changeFocus, keyboardEvent, suggestions } = useSearch();
 
   const searchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const localStorage = new LocalStorage();
-    localStorage.save(RECENT_SEARCH, searchText);
-    changeSearchText('');
-    changeFocus(true);
+    const rec = suggestions.filter((pre) => pre.sickNm === searchText);
+    !isEmpty(rec) && localStorage.save(RECENT_SEARCH, rec[0].sickNm);
+    changeFocus(false);
   };
 
   return (
@@ -24,14 +25,17 @@ const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
       <input
         type='text'
         name='sick'
+        defaultValue={searchText}
         value={searchText}
-        onChange={inputChange}
-        autoFocus
+        onChange={(e) => {
+          inputChange(e);
+        }}
         onFocus={() => changeFocus(true)}
         onKeyDown={keyboardEvent}
+        autoComplete='off'
         ref={ref}
       />
-      <button type='submit' className='submit-btn'>
+      <button type='submit' className='submit-btn' disabled={isEmpty(searchText)}>
         <FaSearch size='24' color='white' />
       </button>
     </Form>

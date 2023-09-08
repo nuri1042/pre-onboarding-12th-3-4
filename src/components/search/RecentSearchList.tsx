@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import LocalStorage, { RECENT_SEARCH } from '../storage/localStorage';
+import LocalStorage, { RECENT_SEARCH } from '../../storage/localStorage';
 import RecentSearchItem from './RecentSearchItem';
 
 export default function RecentSearchList() {
@@ -26,8 +26,6 @@ export default function RecentSearchList() {
 
 const StyledList = styled.div`
   padding: 0 15px;
-  /* display: flex;
-  align-items: center; */
   > span {
     display: block;
     font-size: small;
@@ -41,6 +39,7 @@ const StyledList = styled.div`
   ul {
     padding: 10px 0;
     display: flex;
+    flex-direction: column;
     gap: 5px;
   }
 `;

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import SearchProvider from '../context/SearchProvider';
 import SearchForm from './SearchForm';
 import SearchList from './SearchList';
-import { useSearch } from '../context/SearchContext';
-import useClickOutside from '../hooks/useClickOutside';
+import { useSearch } from '../../context/SearchContext';
+import useClickOutside from '../../hooks/useClickOutside';
 import { useRef } from 'react';
 
 function Search() {

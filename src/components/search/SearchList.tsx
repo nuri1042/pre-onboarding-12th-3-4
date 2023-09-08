@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
-import { useSearch } from '../context/SearchContext';
-import { isEmpty } from '../lib/utils';
+import { useSearch } from '../../context/SearchContext';
+import { isEmpty } from '../../lib/utils';
 import RecentSearchList from './RecentSearchList';
 import SelectItem from './SearchItem';
 
 export default function SelectList() {
-  const { suggestions, searchText, selectionIndex } = useSearch();
+  const { suggestions, searchText, selectionIndex, hoverSearchListItem } = useSearch();
 
   return (
     <StyledList>
@@ -22,7 +22,7 @@ export default function SelectList() {
           suggestions.map((sick, index) => {
             return (
               <li key={sick.sickCd} className={selectionIndex === index ? 'selected' : ''}>
-                <SelectItem>{sick.sickNm}</SelectItem>
+                <SelectItem sick={sick} />
               </li>
             );
           })}
@@ -69,10 +69,13 @@ const StyledList = styled.div`
       text-align: left;
       overflow: hidden;
     }
-    li:hover,
+    li:hover {
+      background-color: #e6ecff;
+    }
     .selected {
       background-color: #e6ecff;
     }
+
     svg {
       width: 20px;
       height: 20px;
