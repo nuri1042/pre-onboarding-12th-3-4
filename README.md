@@ -7,7 +7,6 @@
 ## 팀 구성원 및 역할
 
 - 원티드 프리온보딩 프론트엔트 인턴쉽 12차 4팀입니다.
-
 |                                     **강병헌**                                      |                                     **김누리**                                      |                                     **김신혁**                                      |                                      **박윤철**                                      |                                   **우혜리 (팀장)**                                   |                                      **이은학**                                      |
 | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
 | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/33623123?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/19181088?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/73675549?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/22779951?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/107099724?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/52943412?v=4" > |
@@ -15,6 +14,7 @@
 |              최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기              |                                   로컬 캐싱 구현                                    |                          Context API 설정, API 호출줄이기                           |                                       API 설정                                       |                              초기 설정, 검색어 추천 기능                              |                                    키보드 접근성                                     |
 
 ## 배포 링크
+<a href="https://pre-onboarding-12th-3-4.vercel.app/">임상시험 검색 프로젝트 배포 링크</a>
 
 ## 프로젝트 실행 방법
 
@@ -51,12 +51,12 @@ npm start
 ## 기술 및 개발 환경
 
 ### 사용 라이브러리
-
 - 언어: TypeScript
 - 스타일 관리: styled-components, react-icons
 - 라우팅 관련 라이브버리: react-router-dom
 - HTTP Client: axios
 - 협업 설정 도구: eslint, prettier, husky, lint-staged
+- 데이터 API 관련: json-server
 
 ```js
   "dependencies": {
@@ -113,7 +113,6 @@ npm start
 ```
 
 ### Prettier 설정
-
 ```js
 {
   "bracketSpacing": true,
@@ -132,17 +131,18 @@ npm start
 ```
 
 ## 폴더 구조
-
 ```
 📦 src
 ├── 📂 api
-│   ├── 📄 cache.ts
 │   ├── 📄 http.ts
 │   └── 📄 search.ts
 ├── 📂 components
 │   ├── 📂 common
-│   │    └── 📄 Input.tsx
+│   │    └── 📄 Header.tsx
 │   ├── 📂 search
+│   │    ├── 📄 RecentSearchItem.tsx
+│   │    ├── 📄 RecentSearchList.tsx
+│   │    ├── 📄 Search.tsx
 │   │    ├── 📄 SearchForm.tsx
 │   │    ├── 📄 SearchItem.tsx
 │   │    └── 📄 SearchList.tsx
@@ -150,7 +150,11 @@ npm start
 │   ├── 📄 SearchContext.ts
 │   └── 📄 SearchProvider.tsx
 ├── 📂 hooks
+│   │    ├── 📄 useClickOutside.ts
 │   │    └── 📄 useDebounce.ts
+├── 📂 storage
+│   │    ├── 📄 cacheStorage.ts
+│   │    └── 📄 localStorage.ts
 ├── 📂 lib
 │   └── 📄 utils.ts
 ├── 📂 pages
@@ -178,22 +182,22 @@ npm start
 
 - axios class를 사용해 generic하게 정의
 - 해당 class의 매개변수로 storage를 받아 api 호출을 할때 해당 storage에 저장
-- ✅ 이유
+- ✅ 이유: 재사용을 할 수 있게 하고 api 호출과 동시에 원하는 storage에 저장할 수 있게 만들기 위함
 
 #### 검색어 정보 관리
 
 - Context API로 searchText와 추천 검색어 리스트 저장
-- ✅ 이유:
+- ✅ 이유: searchText와 추천 검색어가 많은 컴포넌트에 걸쳐 사용되므로 전역에서 관리할 수 있어야 함
 
 #### 화면에 뿌리기
 
 - Context API를 통해 SearchList에서 추천 검색어 리스트를 저장하고 map으로 순회하며 SearchItem을 뿌리기
-- ✅ 이유
 
 #### 최근 검색어
 
-- localStroage로 저장
-- ✅ 이유
+- localStroage class를 사용해 save, get하도록 정의
+- 해당 class의 매개변수로 keyword와 searchText를 받아 localStorage에 저장
+- ✅ 이유: 재사용 가능성을 높이기 위함
 
 ### Assignment 2: 로컬 캐싱 구현
 
@@ -221,17 +225,13 @@ npm start
 - 한글의 경우 단모음 단자음이 아닐때 검색되게 구현
 - 모든 언어 통틀어 setTimeout delay 시간을 짧게 설정해 useDebounce 훅에서 처리
 - ✅ 이유: 임상시험의 경우 단모음 단자음이 포함되는 검색어가 없기에 한글의 경우는 단모음 단자음이 아닐때만 호출하는 것이 효율적임
-- ✅ 이유: 영어나 다른 언어의 경우 단모음 단자음 처리가 애매하기 때문에 debounce 처리 (대신 delay시간을 짧게 설정하여 검색어가 금방 나오도록 설정)
+- ✅ 이유: 영어나 다른 언어의 경우 단모음 단자음 처리가 애매하기 때문에 debounce 처리 (대신 delay 시간을 짧게 설정하여 검색어가 금방 나오도록 설정)
 
 ### Assignment 4: 키보드 접근성
 
 > - 키보드만으로 추천 검색어들로 이동 가능하도록 구현
 >   - 사용법 README에 기술
 
-#### 키보드/focus의 이동
-
-- Context API로 관리
-- ✅ 이유: 
 
 #### 추천 검색어 리스트에서의 이동
 
