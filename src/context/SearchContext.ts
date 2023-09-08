@@ -5,12 +5,12 @@ export interface SearchContextType {
   keyboardEvent: (e: any) => void;
   isFocus: boolean;
   changeFocus: (value: boolean) => void;
-  changeSearchText: (text: string) => void;
   searchText: string;
   suggestions: Sick[];
   inputChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleSuggestionClick: (suggestion: string) => void;
+  handleSuggestionClick: (keyword: string) => void;
   selectionIndex: number;
+  hoverSearchListItem: (index: number) => void;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);

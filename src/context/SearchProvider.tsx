@@ -14,7 +14,7 @@ const SEARCH_LIMIT = 10;
 function SearchProvider({ children }: SearchProviderProps) {
   const [isFocus, setIsFocus] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [suggestions, setSuggestions] = useState<Sick[]>([]);
+  const [suggestions, setSuggestions] = useState<Sick[]>(() => []);
   const [selectionIndex, setSelectedIndex] = useState(-1);
 
   useEffect(() => {
@@ -28,14 +28,9 @@ function SearchProvider({ children }: SearchProviderProps) {
     setSuggestions(res.slice(0, SEARCH_LIMIT));
   };
 
-  const changeSearchText = (text: string) => {
-    setSearchText(text);
-  };
-
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value;
     setSearchText(keyword);
-
     if (isPass(keyword)) return;
     if (!keyword) {
       setSuggestions([]);
@@ -43,9 +38,16 @@ function SearchProvider({ children }: SearchProviderProps) {
     }
     getSuggestion(keyword);
   };
-  const handleSuggestionClick = (suggestion: string) => {
-    setIsFocus(false);
-  };
+
+  const handleSuggestionClick = useCallback(
+    (sickNm: string) => {
+      setSearchText(sickNm);
+      getSuggestion(sickNm);
+      setSuggestions((pre) => pre.filter((pre) => pre.sickNm));
+      setIsFocus(false);
+    },
+    [suggestions],
+  );
 
   const keyboardEvent = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
@@ -80,16 +82,20 @@ function SearchProvider({ children }: SearchProviderProps) {
     [suggestions],
   );
 
+  const hoverSearchListItem = (index: number) => {
+    setSelectedIndex(index);
+  };
+
   const contextValue: SearchContextType = {
     isFocus,
     changeFocus,
     searchText,
     suggestions,
     inputChange,
-    changeSearchText,
     handleSuggestionClick,
     keyboardEvent,
     selectionIndex,
+    hoverSearchListItem,
   };
 
   return <SearchContext.Provider value={contextValue}>{children}</SearchContext.Provider>;
