@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useSearch } from '../context/SearchContext';
 import LocalStorage, { RECENT_SEARCH } from '../storage/localStorage';
 
+
 interface Props {
   ref?: React.MutableRefObject<HTMLInputElement | null>;
 }

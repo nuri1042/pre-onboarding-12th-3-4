@@ -203,7 +203,14 @@ npm start
 >   - expire time을 구현할 경우 가산점 (extra)
 
 - cacheStorage로 저장
-- ✅ 이유:
+- ✅ 이유: 디스크 전체 용량의 60%까지 저장 가능한 cacheStorage를 이용
+- api 호출 전 get메서드를 통해 검색어에 해당하는 캐시가 있는지 확인
+- 캐시가 존재하면 해당 캐시를 리턴하고, 없으면 api 호출 후에 set메서드를 통해 캐시에 저장
+
+#### expire time 구현
+
+- 캐시의 header에 FETCH_DATE를 저장
+- 이후 해당 캐시에 접근 시 `현재시간-FETCH_DATE > EXPIRE_TIME` 로 비교해 해당 캐시가 만료됐는지 여부를 판단, 만료되었으면 삭제
 
 ### Assignment 3: API 호출 횟수 줄이기
 

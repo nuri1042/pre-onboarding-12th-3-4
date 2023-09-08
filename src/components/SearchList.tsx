@@ -3,8 +3,6 @@ import SelectItem from './SearchItem';
 import { styled } from 'styled-components';
 import { isEmpty } from '../lib/utils';
 
-const SEARCH_LIMIT = 10;
-
 export default function SelectList() {
   const { suggestions, searchText } = useSearch();
 
@@ -16,10 +14,11 @@ export default function SelectList() {
         {!isEmpty(searchText) && !isEmpty(suggestions) && '추천 검색어'}
       </li>
       {!isEmpty(searchText) &&
-        suggestions.slice(0, SEARCH_LIMIT).map((sick) => {
+        suggestions.map((sick) => {
           return (
             <li key={sick.sickCd}>
               <SelectItem>{sick.sickNm}</SelectItem>
+              {searchText === sick.sickNm && '같은 이름, 선택됨'}
             </li>
           );
         })}
