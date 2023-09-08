@@ -16,6 +16,7 @@ const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
     const localStorage = new LocalStorage();
     localStorage.save(RECENT_SEARCH, searchText);
     changeSearchText('');
+    changeFocus(true);
   };
 
   return (
@@ -37,6 +38,7 @@ const SearchForm = forwardRef<HTMLInputElement, Props>(({ ...props }, ref) => {
 });
 
 export default SearchForm;
+
 const Form = styled.form`
   background-color: white;
   border-radius: 3rem;
