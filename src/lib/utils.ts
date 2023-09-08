@@ -1,4 +1,7 @@
 export const isEmpty = (data: any) => {
+  if (data === undefined) {
+    return true;
+  }
   return data.length === 0;
 };
 

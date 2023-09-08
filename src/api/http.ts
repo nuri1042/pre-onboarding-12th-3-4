@@ -1,15 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import CacheApiServer from '../utils/cacheStorage';
+import CacheApiServer from '../storage/cacheStorage';
 
 const BASE_URL =
   process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
-
 class Http {
   axiosInstance: AxiosInstance;
 
   constructor(
     baseURL: string,
-    private cache = new CacheApiServer('sick'),
+    private cache: Cache = new CacheApiServer('sick'),
   ) {
     this.axiosInstance = axios.create({ baseURL });
   }
@@ -19,7 +18,10 @@ class Http {
 
     try {
       const cachedResponse = await this.cache.get(cacheKey);
-      if (config.method === 'GET' && cachedResponse) return cachedResponse.json();
+      if (config.method === 'GET' && cachedResponse) {
+        console.info('in cach data');
+        return cachedResponse;
+      }
 
       const axiosConfig: AxiosRequestConfig = {
         method: config.method,
@@ -29,11 +31,12 @@ class Http {
       };
       const res: AxiosResponse = await this.axiosInstance(axiosConfig);
       if (config.method === 'GET') {
+        console.info('calling api');
         this.cache.set(cacheKey, res.data);
       }
       return res.data;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       throw err;
     }
   }
@@ -55,3 +58,8 @@ type RequestConfig = {
   query?: any;
   body?: any;
 };
+
+export interface Cache {
+  get<T>(key: string): Promise<T | undefined>;
+  set<T>(key: string, value: T): void;
+}
