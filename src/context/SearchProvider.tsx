@@ -30,7 +30,9 @@ function SearchProvider({ children }: SearchProviderProps) {
     }
     getSuggestion(keyword);
   };
-  const handleSuggestionClick = (suggestion: string) => {};
+  const handleSuggestionClick = (suggestion: string) => {
+    setIsFocus(false);
+  };
 
   const keyboardEvent = useCallback((e: KeyboardEvent<HTMLInputElement>) => {}, []);
 
