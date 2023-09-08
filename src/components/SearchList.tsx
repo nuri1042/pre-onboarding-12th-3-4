@@ -10,12 +10,13 @@ export default function SelectList() {
   return (
     <StyledList>
       <RecentSearchList />
+      <hr />
       <span>
         {isEmpty(searchText) && '검색어 없음'}
         {!isEmpty(searchText) && isEmpty(suggestions) && '추천 검색어 없음'}
         {!isEmpty(searchText) && !isEmpty(suggestions) && '추천 검색어'}
       </span>
-      <hr />
+
       <ul>
         {!isEmpty(searchText) &&
           suggestions.map((sick) => {
@@ -51,31 +52,31 @@ const StyledList = styled.div`
     color: #535353;
   }
   > hr {
-    border-top: 1px dashed var(--primary);
+    border-top: 2px solid #d8d8d8;
   }
-  ul {
+  > ul {
     max-height: 500px;
     overflow: auto;
-  }
-  li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: solid 1px #ececec;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px;
-    width: 100%;
-    text-align: left;
-    overflow: hidden;
-  }
-  li:hover,
-  .selected {
-    background-color: #e6ecff;
-  }
-  svg {
-    width: 20px;
-    height: 20px;
-    padding-top: 3px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: solid 1px #ececec;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px;
+      width: 100%;
+      text-align: left;
+      overflow: hidden;
+    }
+    li:hover,
+    .selected {
+      background-color: #e6ecff;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      padding-top: 3px;
+    }
   }
 `;

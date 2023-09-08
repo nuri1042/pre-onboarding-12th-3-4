@@ -8,9 +8,9 @@ export default function RecentSearchList() {
 
   return (
     <StyledList>
-      <span>최근 검색어 : </span>
+      <span>최근 검색어 </span>
       {!Array.isArray(recentData) ? (
-        <span>최근 검색어가 없습니다.</span>
+        <h3>최근 검색어가 없습니다.</h3>
       ) : (
         <ul>
           {recentData.map((data: string, idx: number) => (
@@ -26,18 +26,21 @@ export default function RecentSearchList() {
 
 const StyledList = styled.div`
   padding: 0 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  /* display: flex;
+  align-items: center; */
   > span {
+    display: block;
     font-size: small;
-    color: #cecece;
+    color: #888888;
+  }
+  h3 {
+    font-size: 16px;
+    padding: 5px 0;
+    color: #b4b4b4;
   }
   ul {
-    display: inline-flex;
+    padding: 10px 0;
+    display: flex;
     gap: 5px;
-    li {
-      padding: 0;
-    }
   }
 `;
