@@ -2,20 +2,26 @@ import styled from 'styled-components';
 import SearchProvider from '../context/SearchProvider';
 import SearchForm from './SearchForm';
 import SearchList from './SearchList';
+import { useSearch } from '../context/SearchContext';
+import useClickOutside from '../hooks/useClickOutside';
+import { useRef } from 'react';
 
 function Search() {
+  const { isFocus, changeFocus } = useSearch();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useClickOutside(inputRef, () => changeFocus(false));
+
   return (
-    <SearchProvider>
-      <SearchWrap>
-        <h1>
-          국내 모든 임상시험 검색하고 <br /> 온라인으로 참여하기{' '}
-        </h1>
-        <div className='search-wrap'>
-          <SearchForm />
-          <SearchList />
-        </div>
-      </SearchWrap>
-    </SearchProvider>
+    <SearchWrap>
+      <h1>
+        국내 모든 임상시험 검색하고 <br /> 온라인으로 참여하기{' '}
+      </h1>
+      <div className='search-wrap'>
+        <SearchForm ref={inputRef} />
+        {isFocus && <SearchList />}
+      </div>
+    </SearchWrap>
   );
 }
 
