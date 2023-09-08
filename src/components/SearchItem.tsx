@@ -9,10 +9,14 @@ type SelectItemProps = {
 export default function SelectItem({ children }: SelectItemProps) {
   return (
     <StyledItem type='button'>
-      <FaSearch size='12' color='white' />
+      <FaSearch size='12' color='gray' />
       <span>{children}</span>
     </StyledItem>
   );
 }
 
-const StyledItem = styled.button``;
+const StyledItem = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
