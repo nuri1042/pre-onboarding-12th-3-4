@@ -1,9 +1,9 @@
 // SearchProvider.tsx
-import React, { KeyboardEvent, useCallback, useState, useEffect } from 'react';
+import React, { KeyboardEvent, useCallback, useEffect, useState } from 'react';
+import { search } from '../api/search';
+import { isEmpty, isPass } from '../lib/utils';
 import { Sick } from '../types';
 import SearchContext, { SearchContextType } from './SearchContext';
-import { search } from '../api/search';
-import { isEmpty } from '../lib/utils';
 
 interface SearchProviderProps {
   children: React.ReactNode;
@@ -32,6 +32,8 @@ function SearchProvider({ children }: SearchProviderProps) {
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const keyword = event.target.value;
     setSearchText(keyword);
+
+    if (isPass(keyword)) return;
     if (!keyword) {
       setSuggestions([]);
       return;
@@ -43,6 +45,7 @@ function SearchProvider({ children }: SearchProviderProps) {
   const keyboardEvent = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (isEmpty(suggestions)) return;
+
       switch (e.key) {
         case 'ArrowUp': {
           e.preventDefault();
@@ -69,7 +72,7 @@ function SearchProvider({ children }: SearchProviderProps) {
         }
       }
     },
-    [suggestions],
+    [searchText, suggestions],
   );
 
   const contextValue: SearchContextType = {
