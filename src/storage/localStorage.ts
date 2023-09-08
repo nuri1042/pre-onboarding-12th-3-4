@@ -3,8 +3,13 @@ export const RECENT_SEARCH = 'recent';
 export default class LocalStorage {
   save(keyword: string, searchText: string) {
     const data = localStorage.getItem(keyword);
-    const newData = !data ? [searchText] : [searchText, ...JSON.parse(data)];
-    localStorage.setItem(keyword, JSON.stringify(newData));
+    if (!data) {
+      localStorage.setItem(keyword, JSON.stringify([searchText]));
+    } else {
+      const newData = JSON.parse(data).filter((item: string) => item !== searchText);
+      newData.unshift(searchText);
+      localStorage.setItem(keyword, JSON.stringify(newData.slice(0, 5)));
+    }
   }
 
   get(keyword: string) {
