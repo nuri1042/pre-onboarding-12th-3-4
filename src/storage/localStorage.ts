@@ -1,8 +1,6 @@
 export const RECENT_SEARCH = 'recent';
 
 export default class LocalStorage {
-  private EXP = 10; // MIN
-
   save(keyword: string, searchText: string) {
     const data = localStorage.getItem(keyword);
     const newData = !data ? [searchText] : [searchText, ...JSON.parse(data)];
