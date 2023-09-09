@@ -1,22 +1,22 @@
 # 원티드 프리온보딩 3주차 과제
 
 - 해당 repository는 원티드 프리온보딩 프론트엔트 인턴쉽 12차 3주차 과제을 다뤘습니다.
-- `<a href="https://clinicaltrialskorea.com/">`해당 링크 `</a>`의 검색 영역을 클론하였으며 국내 임상시험 검색할때 추천 검색어를 보여주는 프로젝트입니다.
+- <a href="https://clinicaltrialskorea.com/">해당 링크</a>의 검색 영역을 클론하였으며 국내 임상시험 검색할때 추천 검색어를 보여주는 프로젝트입니다.
 - 팀원들과 상의해 각 기능의 Best Practice를 도출하고 합친 결과물입니다.
 
 ## 팀 구성원 및 역할
 
 - 원티드 프리온보딩 프론트엔트 인턴쉽 12차 4팀입니다.
 
-|                                      **강병헌**                                       |                                      **김누리**                                       |                                      **김신혁**                                       |                                       **박윤철**                                       |                                    **우혜리 (팀장)**                                    |                                       **이은학**                                       |
-| :-----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/33623123?v=4">` | `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/19181088?v=4">` | `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/73675549?v=4">` | `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/22779951?v=4" >` | `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/107099724?v=4" >` | `<img width="180" alt="" src="https://avatars.githubusercontent.com/u/52943412?v=4" >` |
-|                       [llbllhllk](https://github.com/llbllhllk)                       |                        [nuri1042](https://github.com/nuri1042)                        |                        [devshinn](https://github.com/devshinn)                        |                    [mrsimplelife](https://github.com/mrsimplelife)                     |                        [hyeri-woo](https://github.com/hyeri-woo)                        |                        [dmsgkr02](https://github.com/dmsgkr02)                         |
-|               최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기               |                                    로컬 캐싱 구현                                     |                           Context API 설정, API 호출줄이기                            |                                        API 설정                                        |                               초기 설정, 검색어 추천 기능                               |                                     키보드 접근성                                      |
+|                                     **강병헌**                                      |                                     **김누리**                                      |                                     **김신혁**                                      |                                      **박윤철**                                      |                                   **우혜리 (팀장)**                                   |                                      **이은학**                                      |
+| :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| <img width="180" alt="" src="https://avatars.githubusercontent.com/u/33623123?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/19181088?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/73675549?v=4"> | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/22779951?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/107099724?v=4" > | <img width="180" alt="" src="https://avatars.githubusercontent.com/u/52943412?v=4" > |
+|                      [llbllhllk](https://github.com/llbllhllk)                      |                       [nuri1042](https://github.com/nuri1042)                       |                       [devshinn](https://github.com/devshinn)                       |                   [mrsimplelife](https://github.com/mrsimplelife)                    |                       [hyeri-woo](https://github.com/hyeri-woo)                       |                       [dmsgkr02](https://github.com/dmsgkr02)                        |
+|              최근 검색어, 아웃포커스/추천검색어 선택시 SearchList 닫기              |                                   로컬 캐싱 구현                                    |                          Context API 설정, API 호출줄이기                           |                                       API 설정                                       |                              초기 설정, 검색어 추천 기능                              |                                    키보드 접근성                                     |
 
 ## 배포 링크
 
-`<a href="https://pre-onboarding-12th-3-4.vercel.app/">`임상시험 검색 프로젝트 배포 링크 `</a>`
+<a href="https://pre-onboarding-12th-3-4.vercel.app/">임상시험 검색 프로젝트 배포 링크</a>
 
 ## 프로젝트 실행 방법
 
@@ -176,7 +176,7 @@ npm start
 
 ## 기능 상세
 
-현재 README에는 동료학습을 통해 도출된 각 Assignment의 Best Practice을 포함되어 있습니다. 더 자세한 내용은 해당 `<a href='https://lean-mahogany-686.notion.site/3-26232367afae4c01a9e421fac3a0bba5'>`노션 링크 `</a>`에서 확인하실 수 있습니다.
+현재 README에는 동료학습을 통해 도출된 각 Assignment의 Best Practice을 포함되어 있습니다. 더 자세한 내용은 해당 <a href='https://lean-mahogany-686.notion.site/3-26232367afae4c01a9e421fac3a0bba5'>노션 링크</a>에서 확인하실 수 있습니다.
 
 ### Assignment 1: 검색어 추천 기능
 
@@ -188,30 +188,6 @@ npm start
 - axios class를 사용해 generic하게 정의
 - 해당 class의 매개변수로 storage를 받아 api 호출을 할때 해당 storage에 저장
 - ✅ 이유: 재사용을 할 수 있게 하고 api 호출과 동시에 원하는 storage에 저장할 수 있게 만들기 위함
-
-### API 호출 횟수 줄이기
-
-> 추천 검색어에서 api 호출을 줄일 수 있는 방법은 여러가지가 있습니다.
-
-1. 캐싱 (Caching)
-2. 요청 중복 제거
-3. 요청 병합 (Request Batching)
-4. 클라이언트 측 검색 (Client-Side Search)
-5. 서버 사이드 검색 (Server-Side Search)
-6. 미리 가져오기 (Prefetching)
-7. 델타 업데이트 (Delta Updates)
-8. 웹 소켓 (WebSocket) 또는 실시간 기술 활용
-9. debouncing
-
-- 현재 적용된 로직은 단모음, 단자음, 공백을 구분하여 api 호출을 줄였습니다 + 캐싱.
-
-단어 별로 요청을 할수도 있지만 그러면 검색어를 추천해주는 의미가 없다고 생각했습니다.
-
-예를 들어 '대한 민국' 검색 할 경우 naver 나 google은 다른 로직들이 있겠지만 네트워크상
-
-`ㄷ대ㅎ하한' 'ㅁ미민ㄱ구국` 이렇게 12번의 요청을 하고있었습니다.
-
-현재 프로젝트에서는 가장 단순하게 '단모음/단자음/공백' 경우에는 api(cache 포)호출을 하지않아(ㄷㅎ" "ㅁㄱ) 7번의 호출을 하고 있습니다.
 
 #### 검색어 정보 관리
 
@@ -269,3 +245,4 @@ npm start
 - 추천 검색어에서 엔터키 눌렀을시 (submit)
   - 포거스 아이템 결과가 최근 검색 결과에 포함
 - ✅ 이유: input에서의 화살표 이동하면 사용자 입장에서 편함
+
